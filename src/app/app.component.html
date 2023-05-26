@@ -1,20 +1,20 @@
 <p-toast></p-toast>
+<!-- Criado o Container Login para obter o formulário de acesso -->
 <div class="login-container">
 <h1>Login</h1>
-
 <form>
   <div class="p-input-filled">
     <label for="usuario">Usuário:</label><br>
-    <input type="text" [(ngModel)]="usuario" name="usuario" required pInputText>
+    <input type="text" [(ngModel)]="usuario.nome" name="usuario.nome" pInputText>
   </div><br>
   <div class="p-input-filled">
     <label for="password">Senha:</label><br>
-    <input type="password" id="password" [(ngModel)]="password" name="password" required pInputText>
+    <input type="password" id="password" [(ngModel)]="usuario.senha" name="usuario.senha" pInputText>
   </div><br>
-  <button (click)="realizarLogin = !realizarLogin" pButton pRipple label="Acessar" icon="pi" class="p-button p-mr-2"></button>
+  <button (click)="realizarLogin()" pButton pRipple label="Acessar" icon="pi" class="p-button p-mr-2"></button>
 </form>
 </div>
-<div *ngIf="realizarLogin" class="card">
+<div *ngIf="login" class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
             <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>

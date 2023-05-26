@@ -36,7 +36,13 @@ export class AppComponent {
   personDialog: boolean;
   selectedPersons: Person[];
 
-  realizarLogin: boolean = false;
+  //variavel login para aparecer para o usuário a próxima tela após logar
+  login: boolean = false;
+  //objeto usuário
+  usuario = {
+    nome:"",
+    senha:""
+  }
 
 
   constructor(
@@ -54,28 +60,16 @@ export class AppComponent {
   openNew() {
     this.person = {};
     this.submitted = false;
-    this.productDialog = true;
     this.personDialog = true;
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.products = this.products.filter(
-          (val) => !this.selectedProducts.includes(val)
-        );
-        this.selectedProducts = null;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Products Deleted',
-          life: 3000,
-        });
-      },
-    });
+  //criada função realizar login
+  realizarLogin(){
+    if (this.usuario.nome =="admin" && this.usuario.senha == "admin"){
+      this.login = true;
+    } else{
+      return alert('Usuário ou senha inválidos');
+    }
   }
 
   deleteSelectedPerson() {
@@ -98,33 +92,11 @@ export class AppComponent {
     });
   }
 
-  editProduct(product: Product) {
-    this.product = { ...product };
-    this.productDialog = true;
-  }
 
   editPerson(person: Person) {
     this.person = { ...person };
     this.person.born = new Date(this.person.born)
     this.personDialog = true;
-  }
-
-  deleteProduct(product: Product) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + product.name + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.products = this.products.filter((val) => val.id !== product.id);
-        this.product = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
-          life: 3000,
-        });
-      },
-    });
   }
 
   deletePerson(person: Person) {
@@ -148,35 +120,6 @@ export class AppComponent {
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
-  }
-
-  saveProduct() {
-    this.submitted = true;
-
-    if (this.person.name.trim()) {
-      if (this.person.id) {
-        this.persons[this.findIndexById(this.person.id)] = this.person;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Usuário atualizado',
-          life: 3000,
-        });
-      } else {
-        this.person.id = this.createId();
-        this.persons.push(this.person);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Created',
-          life: 3000,
-        });
-      }
-
-      this.persons = [...this.persons];
-      this.personDialog = false;
-      this.person = {};
-    }
   }
 
   savePerson() {
