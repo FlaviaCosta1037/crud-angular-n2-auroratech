@@ -67,8 +67,10 @@ export class AppComponent {
   realizarLogin(){
     if (this.usuario.nome =="admin" && this.usuario.senha == "admin"){
       this.login = true;
-    } else{
-      return alert('Usuário ou senha inválidos');
+    } else if (this.usuario.nome =="" || this.usuario.senha ==""){
+      return alert('Os campos precisam ser preenchidos');
+    }else{
+      return alert('Usuário ou senha inválidos, tente novamente!')
     }
   }
 
