@@ -1,14 +1,21 @@
 {
-	"data": [
-		{
-			"id": "1",
-			"name": "Flávia",
-			"born": "1986-06-07",
-			"gender": "Feminino",
-			"height": 1.64,
-			"weight": 65,
-			"notes": "Teste de notas",
-			"phone": 81997583813
-		}
+  "data": [
+    {
+      "id": "1",
+      "name": "Flávia",
+      "born": "1986-06-07",
+      "gender": "Feminino",
+      "height": 1.64,
+      "weight": 65,
+      "notes": "Teste de notas",
+      "phone": 81997583813,
+      "street": "Nome da Rua",
+      "number": "123",
+      "neighborhood": "Nome do Bairro",
+      "city": "Nome da Cidade",
+      "state": "Nome do Estado",
+      "zipCode": "CEP"
+    }
   ]
 }
+

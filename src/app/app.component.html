@@ -31,54 +31,62 @@
     </p-toolbar>
 
     <p-table #dt [value]="persons" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
-        [(selection)]="selectedPersons" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Lista de usuários</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Procurar..." />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="born">Data de Nascimento <p-sortIcon field="born"></p-sortIcon></th>
-                <th pSortableColumn="gender">Genero <p-sortIcon field="gender"></p-sortIcon></th>
-                <th pSortableColumn="height">Altura <p-sortIcon field="height"></p-sortIcon></th>
-                <th pSortableColumn="weight">Peso <p-sortIcon field="weight"></p-sortIcon></th>
-                <th pSortableColumn="notes">Notas <p-sortIcon field="notes"></p-sortIcon></th>
-                <th pSortableColumn="phone">Telefone <p-sortIcon field="phone"></p-sortIcon></th>
-                <th pSortableColumn="update">Atualizar <p-sortIcon field="update"></p-sortIcon></th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-person>
-            <tr>
-                <td>
-                    <p-tableCheckbox [value]="person"></p-tableCheckbox>
-                </td>
-                <td>{{person.name}}</td>
-                <td>{{person.born }}</td>
-                <td>{{person.gender}}</td>
-                <td>{{person.height}}</td>
-                <td>{{person.weight}}</td>
-                <td>{{person.notes}}</td>
-                <td>{{person.phone}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editPerson(person)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePerson(person)"></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+    [(selection)]="selectedPersons" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+<ng-template pTemplate="caption">
+<div class="p-d-flex p-ai-center p-jc-between">
+  <h5 class="p-m-0">Lista de usuários</h5>
+  <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Procurar..." />
+  </span>
 </div>
-
+</ng-template>
+<ng-template pTemplate="header">
+<tr>
+  <th style="width: 3rem">
+    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+  </th>
+  <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
+  <th pSortableColumn="born">Data de Nascimento <p-sortIcon field="born"></p-sortIcon></th>
+  <th pSortableColumn="gender">Gênero <p-sortIcon field="gender"></p-sortIcon></th>
+  <th pSortableColumn="height">Altura <p-sortIcon field="height"></p-sortIcon></th>
+  <th pSortableColumn="weight">Peso <p-sortIcon field="weight"></p-sortIcon></th>
+  <th pSortableColumn="street">Rua <p-sortIcon field="street"></p-sortIcon></th>
+  <th pSortableColumn="number">Número <p-sortIcon field="number"></p-sortIcon></th>
+  <th pSortableColumn="city">Cidade <p-sortIcon field="city"></p-sortIcon></th>
+  <th pSortableColumn="zipCode">CEP <p-sortIcon field="zipCode"></p-sortIcon></th>                
+  <th pSortableColumn="notes">Notas <p-sortIcon field="notes"></p-sortIcon></th>
+  <th pSortableColumn="phone">Telefone <p-sortIcon field="phone"></p-sortIcon></th>
+  <th pSortableColumn="update">Atualizar <p-sortIcon field="update"></p-sortIcon></th>
+  <th></th>
+</tr>
+</ng-template>
+<ng-template pTemplate="body" let-person >
+<tr>
+  <td>
+    <p-tableCheckbox [value]="person"></p-tableCheckbox>
+  </td>
+  <td>{{person.name}}</td>
+  <td>{{person.born}}</td>
+  <td>{{person.gender}}</td>
+  <td>{{person.height}}</td>
+  <td>{{person.weight}}</td>
+  <td>{{person.street}}</td>
+  <td>{{person.number}}</td>
+  <td>{{person.city}}</td>
+  <td>{{person.zipCode}}</td>
+  <td>{{person.notes}}</td>
+  <td>{{person.phone}}</td>
+  <td>
+    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editPerson(person)"></button>
+    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePerson(person)"></button>
+  </td>
+</tr>
+</ng-template>
+</p-table>
+</div>
+    
 <p-dialog [(visible)]="personDialog" [style]="{width: '450px'}" header="Person Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
@@ -102,6 +110,30 @@
         <div class="p-field">
             <label for="weight">Peso</label>
             <input type="text" pInputText id="weight" [(ngModel)]="person.weight" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="zipCode">Cep</label>
+        <input type="text" pInputText id="zipCode" [(ngModel)]="person.zipCode" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="street">Rua</label>
+        <input type="text" pInputText id="street" [(ngModel)]="person.street" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="number">Número</label>
+        <input type="text" pInputText id="number" [(ngModel)]="person.number" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="neighborhood">Bairro</label>
+        <input type="text" pInputText id="neighborhood" [(ngModel)]="person.neighborhood" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="city">Cidade</label>
+        <input type="text" pInputText id="city" [(ngModel)]="person.city" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="state">Estado</label>
+        <input type="text" pInputText id="state" [(ngModel)]="person.state" required autofocus />
         </div>
         <div class="p-field">
             <label for="notes">Notas do Usuário</label>

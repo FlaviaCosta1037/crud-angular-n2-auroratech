@@ -6,5 +6,10 @@ export interface Person {
   height?: number;
   weight?: number;
   notes?: string;
-  phone?: string;
+  zipCode?: string;
+  street?: string;
+  number?: number;
+  neighborhood?: string;
+  city?: string;
+  state?: string;
 }

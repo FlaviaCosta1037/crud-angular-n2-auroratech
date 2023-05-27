@@ -54,7 +54,10 @@ export class AppComponent {
 
   ngOnInit() {
     this.productService.getProducts().then((data) => (this.products = data));
-    this.personService.getPerson().then((data) => (this.persons = data));
+    this.personService.getPerson().then((data) => {
+      this.persons = data;
+      console.log('testeapp.component.ts'+JSON.stringify(this.persons)); // Verifica se os dados estão sendo recebidos corretamente
+    });
   }
 
   openNew() {
