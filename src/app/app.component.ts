@@ -5,6 +5,7 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { PersonService } from './personService';
 import { Person } from './person';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -43,13 +44,17 @@ export class AppComponent {
     nome:"",
     senha:""
   }
+  zipCode: string = '';
+  address: any;
+
 
 
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private personService: PersonService
+    private personService: PersonService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -76,7 +81,19 @@ export class AppComponent {
       return alert('Usuário ou senha inválidos, tente novamente!')
     }
   }
-
+  buscarCEP() {
+    if (this.zipCode.length === 8) {
+      this.http.get(`https://viacep.com.br/ws/${this.zipCode}/json/`)
+        .subscribe((dadosCep: any) => {
+          this.address = dadosCep;
+          this.person.street = this.address.logradouro;
+          this.person.neighborhood = this.address.bairro;
+          this.person.city = this.address.localidade;
+          this.person.state = this.address.uf;
+          console.log(dadosCep)
+        });
+    }
+  }
   deleteSelectedPerson() {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja deletar este usuário?',

@@ -72,10 +72,11 @@
   <td>{{person.gender}}</td>
   <td>{{person.height}}</td>
   <td>{{person.weight}}</td>
+  <td>{{person.zipCode}}</td>
   <td>{{person.street}}</td>
   <td>{{person.number}}</td>
+  <td>{{person.complement}}</td>
   <td>{{person.city}}</td>
-  <td>{{person.zipCode}}</td>
   <td>{{person.notes}}</td>
   <td>{{person.phone}}</td>
   <td>
@@ -111,10 +112,13 @@
             <label for="weight">Peso</label>
             <input type="text" pInputText id="weight" [(ngModel)]="person.weight" required autofocus />
         </div>
+
         <div class="p-field">
         <label for="zipCode">Cep</label>
-        <input type="text" pInputText id="zipCode" [(ngModel)]="person.zipCode" required autofocus />
+        <input type="text" pInputText id="zipCode" [(ngModel)]="person.zipCode" [(ngModel)]="zipCode" placeholder="Digite o Cep" required autofocus />
+        <button (click)="buscarCEP()">Buscar</button>
         </div>
+        <div *ngIf="address"  class="p-field">
         <div class="p-field">
         <label for="street">Rua</label>
         <input type="text" pInputText id="street" [(ngModel)]="person.street" required autofocus />
@@ -122,6 +126,10 @@
         <div class="p-field">
         <label for="number">Número</label>
         <input type="text" pInputText id="number" [(ngModel)]="person.number" required autofocus />
+        </div>
+        <div class="p-field">
+        <label for="complement">Complemento</label>
+        <input type="text" pInputText id="complement" [(ngModel)]="person.complement" required autofocus />
         </div>
         <div class="p-field">
         <label for="neighborhood">Bairro</label>
@@ -134,6 +142,8 @@
         <div class="p-field">
         <label for="state">Estado</label>
         <input type="text" pInputText id="state" [(ngModel)]="person.state" required autofocus />
+        </div>
+
         </div>
         <div class="p-field">
             <label for="notes">Notas do Usuário</label>

@@ -54,6 +54,7 @@ import { PersonService } from './personService';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path:'',component: AppComponent}
 
